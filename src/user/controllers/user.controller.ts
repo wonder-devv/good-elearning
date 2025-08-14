@@ -28,7 +28,6 @@ import {
   ParseIntPipe,
   Put,
   Query,
-  Req,
   Res,
   SerializeOptions,
 } from '@nestjs/common';
@@ -50,35 +49,30 @@ export class UserController {
     private courseBookmarkService: CourseBookmarkService,
   ) {}
 
-  @SerializeOptions({
-    groups: ['detail'],
-  })
+  @SerializeOptions({ groups: ['detail'] })
   @Get()
-  getUser(@Req() request: Request) {
-    return request['user'] as UserDto;
+  getUser(): UserDto {
+    return this.security.getAuthenticatedUser();
   }
 
   @Put()
-  async update(@Body() values: UserUpdateDto) {
+  async update(@Body() values: UserUpdateDto): Promise<UserDto> {
     const user = this.security.getAuthenticatedUser();
-    await this.userService.update({
+    const updated = await this.userService.update({
       ...values,
       id: user.id,
     });
+
+    return updated as UserDto;
   }
 
   @Get('meta')
-  async getUserMeta() {
+  async getUserMeta(): Promise<UserMetaDto> {
     const user = this.security.getAuthenticatedUser();
-    const enrollmentCount = await this.courseEnrollmentService.countByUser(
-      user.id,
-    );
+    const enrollmentCount = await this.courseEnrollmentService.countByUser(user.id);
     const bookmarkCount = await this.courseBookmarkService.countByUser(user.id);
 
-    return new UserMetaDto({
-      enrollmentCount,
-      bookmarkCount,
-    });
+    return new UserMetaDto({ enrollmentCount, bookmarkCount });
   }
 
   @ApiOkResponsePaginated(EnrolledCourseDto)
