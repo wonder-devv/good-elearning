@@ -1,4 +1,4 @@
-# hope-elearning-backend
+# good-elearning
 
 A backend API for the Hope e-learning platform built with NestJS, TypeORM and PostgreSQL.
 
@@ -6,16 +6,19 @@ A backend API for the Hope e-learning platform built with NestJS, TypeORM and Po
 
 ## Table of Contents
 
-- [About](#about)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Quick Start](#quick-start)
-- [Environment Variables](#environment-variables)
-- [Scripts](#scripts)
-- [Testing](#testing)
-- [Database & Migrations](#database--migrations)
-- [Contributing](#contributing)
-- [License](#license)
+- [good-elearning](#good-elearning)
+  - [Table of Contents](#table-of-contents)
+  - [About](#about)
+  - [Features](#features)
+  - [Prerequisites](#prerequisites)
+  - [Quick Start](#quick-start)
+  - [Environment Variables](#environment-variables)
+  - [Scripts](#scripts)
+  - [Testing](#testing)
+  - [Database \& Migrations](#database--migrations)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Author](#author)
 
 ---
 
